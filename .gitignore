@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Auth/session files
+playwright/.auth/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+debug.log
+
+# Downloads / temporary files
+downloads/
+tmp/
+temp/
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
