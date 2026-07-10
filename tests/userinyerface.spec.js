@@ -4,11 +4,8 @@ import LoginCardPage from '../Page/LoginCardPage.js';
 import InterestCardPage from '../Page/InterestCardPage.js';
 import { getUserInyerfaceData } from '../Data/userInyerfaceDataReader.js';
 
-test.use({ headless: false });
 
 test('complete first two User Inyerface cards using framework', async ({ page }) => {
-  test.setTimeout(30000);
-
   const testData = getUserInyerfaceData();
 
   const welcomePage = new WelcomePage(page);
