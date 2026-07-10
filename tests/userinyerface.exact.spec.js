@@ -32,24 +32,22 @@ test('test case 1 - completes the first two registration cards', async ({ page }
 
 test('test case 2 - hide help form', async ({ page }) => {
   const welcomePage = new WelcomePage(page);
-  const gamePage = new GamePage(page);
 
   await welcomePage.verifyPageOpened();
-  await gamePage.hideHelpForm();
-  await gamePage.verifyHelpFormContentHidden();
+  await welcomePage.hideHelpForm();
+  await welcomePage.verifyHelpFormContentHidden();
 });
 
 test('test case 3 - accept cookies', async ({ page }) => {
   const welcomePage = new WelcomePage(page);
-  const gamePage = new GamePage(page);
 
   await welcomePage.verifyPageOpened();
-  await gamePage.acceptCookies();
-  await gamePage.verifyCookiesFormClosed();
+  await welcomePage.acceptCookies();
+  await welcomePage.verifyCookiesFormClosed();
 });
 
 test('test case 4 - timer starts from zero', async ({ page }) => {
-  const gamePage = new GamePage(page);
+  const welcomePage = new WelcomePage(page);
 
-  await gamePage.verifyTimerStartsFrom('00:00');
+  await welcomePage.verifyTimerStartsFrom('00:00');
 });
