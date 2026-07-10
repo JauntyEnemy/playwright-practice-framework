@@ -1,11 +1,12 @@
 import { test } from '@playwright/test';
 import WelcomePage from '../Page/WelcomePage.js';
+import GamePage from '../Page/GamePage.js';
 import LoginCardPage from '../Page/LoginCardPage.js';
 import InterestCardPage from '../Page/InterestCardPage.js';
 import { getUserInyerfaceData } from '../Data/userInyerfaceDataReader.js';
 
 
-test('complete first two User Inyerface cards using framework', async ({ page }) => {
+test('test case 1 - complete first two User Inyerface cards', async ({ page }) => {
   const testData = getUserInyerfaceData();
 
   const welcomePage = new WelcomePage(page);
@@ -25,4 +26,43 @@ test('complete first two User Inyerface cards using framework', async ({ page })
   );
 
   await interestCardPage.verifyNextCardOpened();
+});
+
+test('test case 2 - hide help form', async ({ page }) => {
+  const welcomePage = new WelcomePage(page);
+  const gamePage = new GamePage(page);
+
+  await welcomePage.open();
+  await welcomePage.verifyPageOpened();
+  await welcomePage.startRegistration();
+
+  await gamePage.verifyPageOpened();
+  await gamePage.hideHelpForm();
+  await gamePage.verifyHelpFormContentHidden();
+});
+
+test('test case 3 - accept cookies', async ({ page }) => {
+  const welcomePage = new WelcomePage(page);
+  const gamePage = new GamePage(page);
+
+  await welcomePage.open();
+  await welcomePage.verifyPageOpened();
+  await welcomePage.startRegistration();
+
+  await gamePage.verifyPageOpened();
+  await gamePage.waitForCookiesFormOpened();
+  await gamePage.acceptCookies();
+  await gamePage.verifyCookiesFormClosed();
+});
+
+test('test case 4 - timer starts from zero', async ({ page }) => {
+  const welcomePage = new WelcomePage(page);
+  const gamePage = new GamePage(page);
+
+  await welcomePage.open();
+  await welcomePage.verifyPageOpened();
+  await welcomePage.startRegistration();
+
+  await gamePage.verifyPageOpened();
+  await gamePage.verifyTimerStartsFromZero();
 });
