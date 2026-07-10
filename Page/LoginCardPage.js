@@ -1,34 +1,29 @@
 import BasePage from './BasePage.js';
 import BaseElement from '../Element/BaseElement.js';
-import Button from '../Element/Button.js';
+import CardIndicator from '../Element/CardIndicator.js';
 import Dropdown from '../Element/Dropdown.js';
 import TextBox from '../Element/Textbox.js';
 
 export default class LoginCardPage extends BasePage {
   constructor(page) {
-    const pageIndicator = new BaseElement(
-      page.locator('.page-indicator'),
-      'Page indicator'
-    );
+    const pageIndicator = new CardIndicator(page);
 
     super(page, pageIndicator, 'Login Card Page');
-
-    const loginInputs = page.locator('input.input');
 
     this.pageIndicator = pageIndicator;
 
     this.passwordInput = new TextBox(
-      loginInputs.nth(0),
+      page.getByPlaceholder('Choose Password'),
       'Password input'
     );
 
     this.emailNameInput = new TextBox(
-      loginInputs.nth(1),
+      page.getByPlaceholder('Your email'),
       'Email name input'
     );
 
     this.emailDomainInput = new TextBox(
-      loginInputs.nth(2),
+      page.getByPlaceholder('Domain'),
       'Email domain input'
     );
 
@@ -38,19 +33,20 @@ export default class LoginCardPage extends BasePage {
       'Email domain dropdown'
     );
 
-    this.acceptTermsCheckbox = new Button(
-      page.locator('label[for=accept-terms-conditions]'),
+    this.acceptTermsCheckbox = new BaseElement(
+      page.locator('label[for="accept-terms-conditions"]'),
       'Accept terms and conditions checkbox'
     );
 
-    this.nextButton = new Button(
+    this.nextLink = new BaseElement(
       page.locator('a.button--secondary', { hasText: 'Next' }),
-      'Next button'
+      'Next link'
     );
   }
 
   async verifyPageOpened() {
-    await this.pageIndicator.verifyText('1 / 4');
+    await super.verifyPageOpened();
+    await this.pageIndicator.verifyCurrentCard(1);
   }
 
   async fillPassword(password) {
@@ -74,7 +70,7 @@ export default class LoginCardPage extends BasePage {
   }
 
   async clickNext() {
-    await this.nextButton.click();
+    await this.nextLink.click();
   }
 
   async completeLoginCard({ password, emailName, emailDomain, extension }) {

@@ -1,24 +1,24 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = Boolean(process.env.CI);
+
 export default defineConfig({
   testDir: './tests',
-
   timeout: 30000,
-
   expect: {
     timeout: 6000,
   },
-
-  reporter: 'list',
-
+  retries: isCI ? 2 : 0,
+  reporter: isCI
+    ? [['list'], ['html', { open: 'never' }]]
+    : 'list',
   use: {
     baseURL: 'https://userinyerface.com',
     headless: true,
     screenshot: 'only-on-failure',
-    video: 'on-first-retry',
+    video: 'retain-on-failure',
     trace: 'retain-on-failure',
   },
-
   projects: [
     {
       name: 'chromium',

@@ -10,15 +10,11 @@ export default class BaseElement {
     return this._locator;
   }
 
-  get name() {
-    return this._name;
-  }
-
   async click() {
     await this._locator.click();
   }
 
-  async waitForVisible() {
+  async verifyVisible() {
     await expect(this._locator, `${this._name} should be visible`).toBeVisible();
   }
 
@@ -30,23 +26,10 @@ export default class BaseElement {
     await expect(this._locator, `${this._name} text should match`).toHaveText(expectedText);
   }
 
-  async verifyContainsText(expectedText) {
-    await expect(this._locator, `${this._name} should contain text`).toContainText(expectedText);
-  }
-
   async verifyHasClass(className) {
     await expect(
       this._locator,
       `${this._name} should have ${className} class`
     ).toHaveClass(new RegExp(`(^|\\s)${className}(\\s|$)`));
-  }
-
-  async getText() {
-    const text = await this._locator.textContent();
-    return text?.trim() ?? '';
-  }
-
-  async scrollIntoView() {
-    await this._locator.scrollIntoViewIfNeeded();
   }
 }

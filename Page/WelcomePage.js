@@ -1,6 +1,5 @@
 import BasePage from './BasePage.js';
 import BaseElement from '../Element/BaseElement.js';
-import Button from '../Element/Button.js';
 
 export default class WelcomePage extends BasePage {
   constructor(page) {
@@ -11,17 +10,13 @@ export default class WelcomePage extends BasePage {
 
     super(page, welcomeText, 'Welcome Page');
 
-    this.hereLink = new Button(
+    this.startRegistrationLink = new BaseElement(
       page.getByRole('link', { name: 'HERE' }),
-      'HERE link'
+      'Start registration link'
     );
   }
 
-  async open() {
-    await super.open('https://userinyerface.com/');
-  }
-
   async startRegistration() {
-    await this.hereLink.click();
+    await this.startRegistrationLink.click();
   }
 }
