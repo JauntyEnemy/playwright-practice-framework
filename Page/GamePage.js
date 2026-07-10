@@ -1,6 +1,6 @@
 import BasePage from './BasePage.js';
 import BaseElement from '../Element/BaseElement.js';
-import Button from '../Element/Button.js';
+import CardIndicator from '../Element/CardIndicator.js';
 
 export default class GamePage extends BasePage {
   constructor(page) {
@@ -18,7 +18,7 @@ export default class GamePage extends BasePage {
       'Help form'
     );
 
-    this.hideHelpFormButton = new Button(
+    this.hideHelpFormButton = new BaseElement(
       page.locator('.help-form__send-to-bottom-button'),
       'Send help form to bottom button'
     );
@@ -28,10 +28,12 @@ export default class GamePage extends BasePage {
       'Cookies form'
     );
 
-    this.acceptCookiesButton = new Button(
+    this.closeCookiesButton = new BaseElement(
       page.getByRole('button', { name: 'Not really, no' }),
-      'Accept cookies button'
+      'Close cookies form button'
     );
+
+    this.pageIndicator = new CardIndicator(page);
   }
 
   async hideHelpForm() {
@@ -42,12 +44,12 @@ export default class GamePage extends BasePage {
     await this.helpForm.verifyHasClass('is-hidden');
   }
 
-  async waitForCookiesFormOpened() {
-    await this.cookiesForm.waitForVisible();
+  async verifyCookiesFormOpened() {
+    await this.cookiesForm.verifyVisible();
   }
 
-  async acceptCookies() {
-    await this.acceptCookiesButton.click();
+  async closeCookiesForm() {
+    await this.closeCookiesButton.click();
   }
 
   async verifyCookiesFormClosed() {
@@ -55,6 +57,10 @@ export default class GamePage extends BasePage {
   }
 
   async verifyTimerStartsFromZero() {
-    await this.timer.verifyContainsText('00:00');
+    await this.timer.verifyText('00:00:00');
+  }
+
+  async verifyCurrentCard(cardNumber) {
+    await this.pageIndicator.verifyCurrentCard(cardNumber);
   }
 }

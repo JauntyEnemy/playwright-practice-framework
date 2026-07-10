@@ -1,17 +1,20 @@
 {
   "name": "playwright-practice-framework",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "description": "Playwright practice tests for User Inyerface",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:repeat": "playwright test --repeat-each=3",
+    "test:report": "playwright show-report"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JauntyEnemy/playwright-practice-framework.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/JauntyEnemy/playwright-practice-framework/issues"
   },

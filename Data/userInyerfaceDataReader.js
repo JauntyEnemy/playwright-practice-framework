@@ -1,10 +1,23 @@
 import fs from 'fs';
-import path from 'path';
 
-const dataFilePath = path.resolve('Data/userInyerfaceData.json');
+const dataFileUrl = new URL('./userInyerfaceData.json', import.meta.url);
+
+function getRandomItems(items, itemCount) {
+  const shuffledItems = [...items];
+
+  for (let index = shuffledItems.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledItems[index], shuffledItems[randomIndex]] = [
+      shuffledItems[randomIndex],
+      shuffledItems[index],
+    ];
+  }
+
+  return shuffledItems.slice(0, itemCount);
+}
 
 export function getUserInyerfaceData() {
-  const rawData = fs.readFileSync(dataFilePath, 'utf-8');
+  const rawData = fs.readFileSync(dataFileUrl, 'utf-8');
   const testData = JSON.parse(rawData);
 
   const randomValue = Date.now();
@@ -22,8 +35,10 @@ export function getUserInyerfaceData() {
     },
 
     interestCard: {
-      interestsToSelect: testData.interestCard.interestsToSelect,
-      availableInterests: testData.interestCard.availableInterests,
+      selectedInterests: getRandomItems(
+        testData.interestCard.availableInterests,
+        testData.interestCard.interestsToSelect
+      ),
     },
 
     avatar: {
