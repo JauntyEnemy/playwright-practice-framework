@@ -1,0 +1,26 @@
+{
+  "loginCard": {
+    "emailNamePrefix": "user",
+    "emailDomainPrefix": "example",
+    "passwordPrefix": "Password1",
+    "emailExtension": ".com"
+  },
+  "interestCard": {
+    "interestsToSelect": 3,
+    "availableInterests": [
+      "interest_ponies",
+      "interest_polo",
+      "interest_dough",
+      "interest_snails",
+      "interest_balls",
+      "interest_postits",
+      "interest_faucets",
+      "interest_cables"
+    ]
+  },
+  "avatar": {
+    "fileName": "avatar.png",
+    "mimeType": "image/png",
+    "base64Content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/p9sAAAAASUVORK5CYII="
+  }
+}
