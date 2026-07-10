@@ -1,8 +1,8 @@
 import BasePage from './BasePage.js';
 import BaseElement from '../Element/BaseElement.js';
 import Button from '../Element/Button.js';
-import TextBox from '../Element/TextBox.js';
 import Dropdown from '../Element/Dropdown.js';
+import TextBox from '../Element/TextBox.js';
 
 export default class LoginCardPage extends BasePage {
   constructor(page) {
