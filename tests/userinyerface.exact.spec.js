@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 import WelcomePage from '../Page/WelcomePage.js';
-import GamePage from '../Page/GamePage.js';
 import LoginCardPage from '../Page/LoginCardPage.js';
 import InterestCardPage from '../Page/InterestCardPage.js';
+import PersonalDetailsCardPage from '../Page/PersonalDetailsCardPage.js';
 import { getUserInyerfaceData } from '../Data/userInyerfaceDataReader.js';
 
 test.beforeEach(async ({ page }) => {
@@ -14,9 +14,9 @@ test.beforeEach(async ({ page }) => {
 test('test case 1 - completes the first two registration cards', async ({ page }) => {
   const testData = getUserInyerfaceData();
   const welcomePage = new WelcomePage(page);
-  const gamePage = new GamePage(page);
   const loginCardPage = new LoginCardPage(page);
   const interestCardPage = new InterestCardPage(page);
+  const personalDetailsCardPage = new PersonalDetailsCardPage(page);
 
   await welcomePage.verifyPageOpened();
   await welcomePage.startRegistration();
@@ -27,7 +27,7 @@ test('test case 1 - completes the first two registration cards', async ({ page }
     testData.interestCard,
     testData.avatar
   );
-  await gamePage.verifyCurrentCard(3);
+  await personalDetailsCardPage.verifyPageOpened();
 });
 
 test('test case 2 - hide help form', async ({ page }) => {
