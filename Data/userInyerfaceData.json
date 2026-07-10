@@ -6,7 +6,7 @@
     "emailExtension": ".com"
   },
   "interestCard": {
-    "interestsToSelect": 3,
+    "interestsToSelect": 2,
     "availableInterests": [
       "interest_ponies",
       "interest_polo",

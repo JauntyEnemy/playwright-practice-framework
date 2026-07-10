@@ -28,9 +28,9 @@ export default class GamePage extends BasePage {
       'Cookies form'
     );
 
-    this.closeCookiesButton = new BaseElement(
-      page.getByRole('button', { name: 'Not really, no' }),
-      'Close cookies form button'
+    this.acceptCookiesButton = new BaseElement(
+      page.locator('.cookies').getByRole('button'),
+      'Accept cookies button'
     );
 
     this.pageIndicator = new CardIndicator(page);
@@ -44,20 +44,16 @@ export default class GamePage extends BasePage {
     await this.helpForm.verifyHasClass('is-hidden');
   }
 
-  async verifyCookiesFormOpened() {
-    await this.cookiesForm.verifyVisible();
-  }
-
-  async closeCookiesForm() {
-    await this.closeCookiesButton.click();
+  async acceptCookies() {
+    await this.acceptCookiesButton.click();
   }
 
   async verifyCookiesFormClosed() {
     await this.cookiesForm.verifyHidden();
   }
 
-  async verifyTimerStartsFromZero() {
-    await this.timer.verifyText('00:00:00');
+  async verifyTimerStartsFrom(expectedTime) {
+    await this.timer.verifyTextStartsWith(expectedTime);
   }
 
   async verifyCurrentCard(cardNumber) {

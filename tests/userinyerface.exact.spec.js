@@ -9,18 +9,20 @@ test.beforeEach(async ({ page }) => {
   const welcomePage = new WelcomePage(page);
 
   await welcomePage.open();
-  await welcomePage.verifyPageOpened();
-  await welcomePage.startRegistration();
 });
 
 test('test case 1 - completes the first two registration cards', async ({ page }) => {
   const testData = getUserInyerfaceData();
+  const welcomePage = new WelcomePage(page);
   const gamePage = new GamePage(page);
   const loginCardPage = new LoginCardPage(page);
   const interestCardPage = new InterestCardPage(page);
 
+  await welcomePage.verifyPageOpened();
+  await welcomePage.startRegistration();
   await loginCardPage.verifyPageOpened();
   await loginCardPage.completeLoginCard(testData.loginCard);
+  await interestCardPage.verifyPageOpened();
   await interestCardPage.completeInterestCard(
     testData.interestCard,
     testData.avatar
@@ -29,25 +31,25 @@ test('test case 1 - completes the first two registration cards', async ({ page }
 });
 
 test('test case 2 - hide help form', async ({ page }) => {
+  const welcomePage = new WelcomePage(page);
   const gamePage = new GamePage(page);
 
-  await gamePage.verifyPageOpened();
+  await welcomePage.verifyPageOpened();
   await gamePage.hideHelpForm();
   await gamePage.verifyHelpFormContentHidden();
 });
 
-test('test case 3 - close the cookies form', async ({ page }) => {
+test('test case 3 - accept cookies', async ({ page }) => {
+  const welcomePage = new WelcomePage(page);
   const gamePage = new GamePage(page);
 
-  await gamePage.verifyPageOpened();
-  await gamePage.verifyCookiesFormOpened();
-  await gamePage.closeCookiesForm();
+  await welcomePage.verifyPageOpened();
+  await gamePage.acceptCookies();
   await gamePage.verifyCookiesFormClosed();
 });
 
 test('test case 4 - timer starts from zero', async ({ page }) => {
   const gamePage = new GamePage(page);
 
-  await gamePage.verifyPageOpened();
-  await gamePage.verifyTimerStartsFromZero();
+  await gamePage.verifyTimerStartsFrom('00:00');
 });

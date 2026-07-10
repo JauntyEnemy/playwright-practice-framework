@@ -68,7 +68,6 @@ export default class InterestCardPage extends BasePage {
   }
 
   async completeInterestCard({ selectedInterests }, avatarData) {
-    await this.verifyPageOpened();
     await this.unselectAllInterests();
     await this.selectInterests(selectedInterests);
     await this.uploadAvatar(avatarData);

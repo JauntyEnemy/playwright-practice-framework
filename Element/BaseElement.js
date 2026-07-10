@@ -26,6 +26,15 @@ export default class BaseElement {
     await expect(this._locator, `${this._name} text should match`).toHaveText(expectedText);
   }
 
+  async verifyTextStartsWith(expectedText) {
+    const escapedText = expectedText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    await expect(
+      this._locator,
+      `${this._name} text should start with ${expectedText}`
+    ).toHaveText(new RegExp(`^${escapedText}`));
+  }
+
   async verifyHasClass(className) {
     await expect(
       this._locator,
