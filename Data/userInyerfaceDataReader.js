@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'node:fs';
 
 const dataFileUrl = new URL('./userInyerfaceData.json', import.meta.url);
 

@@ -2,7 +2,7 @@ import BasePage from './BasePage.js';
 import BaseElement from '../Element/BaseElement.js';
 import CardIndicator from '../Element/CardIndicator.js';
 import Dropdown from '../Element/Dropdown.js';
-import TextBox from '../Element/Textbox.js';
+import TextInput from '../Element/TextInput.js';
 
 export default class LoginCardPage extends BasePage {
   constructor(page) {
@@ -12,17 +12,17 @@ export default class LoginCardPage extends BasePage {
 
     this.pageIndicator = pageIndicator;
 
-    this.passwordInput = new TextBox(
+    this.passwordInput = new TextInput(
       page.getByPlaceholder('Choose Password'),
       'Password input'
     );
 
-    this.emailNameInput = new TextBox(
+    this.emailNameInput = new TextInput(
       page.getByPlaceholder('Your email'),
       'Email name input'
     );
 
-    this.emailDomainInput = new TextBox(
+    this.emailDomainInput = new TextInput(
       page.getByPlaceholder('Domain'),
       'Email domain input'
     );

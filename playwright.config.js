@@ -15,6 +15,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://userinyerface.com',
     headless: true,
+    actionTimeout: 6000,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
