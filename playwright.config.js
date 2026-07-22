@@ -18,7 +18,12 @@ export default defineConfig({
   reporter: isCI
     ? [
         ['list'],
-        ['html', { open: 'never' }],
+        [
+          'allure-playwright',
+          {
+            resultsDir: 'allure-results',
+          },
+        ],
       ]
     : 'list',
 
